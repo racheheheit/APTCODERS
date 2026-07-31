@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codely - Web Dev CAMP</title>
+    <!-- Modern K-12 Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Redesigned Purple Topbar Header -->
+    <header class="app-topbar">
+        <div class="topbar-left">
+            <div class="topbar-logo"></div>
+            <h1 class="topbar-title">Web Dev CAMP</h1>
+        </div>
+        <div class="topbar-profile"></div>
+    </header>
+
+    <!-- Main App Layout Container -->
+    <div class="app-layout">
+        
+        <!-- Left Lavender Sidebar -->
+        <aside class="app-sidebar">
+            <nav class="sidebar-menu">
+                <button class="sidebar-item active" id="btn-activity-1" data-target="activity-1-section">
+                    <span class="dot"></span>
+                    <span>Activity 1</span>
+                </button>
+                <button class="sidebar-item" id="btn-activity-2" data-target="activity-2-section">
+                    <span class="dot"></span>
+                    <span>Activity 2</span>
+                </button>
+                <button class="sidebar-item" id="btn-activity-3" data-target="activity-3-section">
+                    <span class="dot"></span>
+                    <span>Activity 3</span>
+                </button>
+                <button class="sidebar-item" id="btn-activity-4" data-target="activity-4-section">
+                    <span class="dot"></span>
+                    <span>Activity 4</span>
+                </button>
+                <button class="sidebar-item" id="btn-activity-5" data-target="activity-5-section">
+                    <span class="dot"></span>
+                    <span>Activity 5</span>
+                </button>
+                <!-- Blank Slots to replicate Figma design -->
+                <div class="sidebar-placeholder"></div>
+                <div class="sidebar-placeholder"></div>
+                <div class="sidebar-placeholder"></div>
+                <div class="sidebar-placeholder"></div>
+                <div class="sidebar-placeholder"></div>
+                <div class="sidebar-placeholder"></div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="app-main">
+            
+            <!-- SECTION 1: ACTIVITY 1 (Heading Elements) -->
+            <section id="activity-1-section" class="activity-section active">
+                <h2 class="workspace-title">Activity 1: Heading Elements</h2>
+                <div class="activity-body">
+                    <!-- Instructions Card (Left Column) -->
+                    <div class="instructions-card">
+                        <h4>Instructions:</h4>
+                        <p>Learn how to add titles to web pages using coding blocks:</p>
+                        <div class="checklist-item">
+                            <input type="checkbox" checked disabled>
+                            <label>Drag the Red Block</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" checked disabled>
+                            <label>Add the Orange Block</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" checked disabled>
+                            <label>Position the Blue Block</label>
+                        </div>
+                    </div>
+                    
+                    <!-- Workspace Card (Right Column) -->
+                    <div class="workspace-card">
+                        <div class="workspace-dashed-container">
+                            <!-- Visual Blockly Canvas Mockup -->
+                            <div class="canvas-preview-container" id="a1-canvas-preview">
+                                <div class="canvas-block canvas-block-red"></div>
+                                <div class="canvas-block canvas-block-orange"></div>
+                                <div class="canvas-block canvas-block-blue"></div>
+                            </div>
+                            
+                            <!-- Loading State overlay -->
+                            <div class="loading-overlay" id="a1-loading-overlay" style="display: none;">
+                                <div class="loading-spinner"></div>
+                                <span class="loading-text">Submitting your work...</span>
+                            </div>
+                            
+                            <!-- Success Celebration Overlay -->
+                            <div class="k12-celebration-container" id="a1-celebration-overlay" style="display: none;">
+                                <h3 class="k12-celebration-title">Wohoo! Awesome Work !</h3>
+                                <p class="k12-celebration-subtitle">Your project has been handed in. Let's compare your work with the correct answer below!</p>
+                                
+                                <div class="k12-comparison-layout">
+                                    <div class="k12-comparison-card">
+                                        <span class="k12-comparison-card-title">Your Code</span>
+                                        <div class="k12-code-preview">
+                                            &lt;h1 style="color:red;"&gt;Heading 1&lt;/h1&gt;<br>
+                                            &lt;h2 style="color:orange;"&gt;Heading 2&lt;/h2&gt;<br>
+                                            &lt;h3 style="color:blue;"&gt;Heading 3&lt;/h3&gt;
+                                        </div>
+                                    </div>
+                                    <div class="k12-comparison-card" style="z-index: 5;">
+                                        <span class="k12-comparison-card-title">Correct Code</span>
+                                        <div class="k12-code-preview">
+                                            &lt;h1 style="color:red;"&gt;Heading 1&lt;/h1&gt;<br>
+                                            &lt;h2 style="color:orange;"&gt;Heading 2&lt;/h2&gt;<br>
+                                            &lt;h3 style="color:blue;"&gt;Heading 3&lt;/h3&gt;
+                                        </div>
+                                        <!-- Tom and Jerry Peeking on success -->
+                                        <div class="peeking-mascot-container">
+                                            <img src="tom_and_jerry.png" alt="Tom and Jerry" class="tom-jerry-peeking-img">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn-k12-next" id="a1-btn-next-activity">Next Activity</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Actions Row -->
+                        <div class="workspace-action-row" id="a1-action-row">
+                            <button class="btn-k12-run" id="a1-btn-run">▶ RUN</button>
+                            <button class="btn-k12-handin" id="a1-btn-handin">✓ Hand in</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- SECTION 2: ACTIVITY 2 (Machine Learning - Slide Navigation) -->
+            <section id="activity-2-section" class="activity-section">
+                <h2 class="workspace-title">Activity 1: Machine Learning</h2>
+                <div class="activity-body" style="flex-direction: column; align-items: center;">
+                    <div class="k12-slide-wrapper">
+                        <!-- Slide Dotted Box -->
+                        <div class="workspace-dashed-container" style="width: 100%; max-width: 520px; padding: 24px;">
+                            <!-- Light pink box that displays slide contents -->
+                            <div class="k12-slide-card" id="a2-slide-content">
+                                <!-- Filled via JS -->
+                            </div>
+                            
+                            <!-- Mascot peeking on Slide 5 (Initial Hidden) -->
+                            <div class="peeking-mascot-left" id="a2-peeking-mascot" style="display: none;">
+                                <img src="tom_and_jerry.png" alt="Tom and Jerry" class="tom-jerry-peeking-img">
+                            </div>
+                        </div>
+                        
+                        <!-- Slide Navigation Control Row -->
+                        <div class="k12-slide-navigation-row" style="width: 100%; max-width: 520px;">
+                            <!-- Left: Dots -->
+                            <div class="k12-slide-indicator-dots" id="a2-dots-container">
+                                <!-- Filled via JS -->
+                            </div>
+                            
+                            <!-- Middle: Status Text -->
+                            <div class="k12-status-text" id="a2-status-text">
+                                Complete all Slides to move to next activity!
+                            </div>
+                            
+                            <!-- Right: Next Button -->
+                            <button class="btn-k12-slide-next" id="a2-btn-next-slide">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- SECTION 3: OTHER ACTIVITIES (Placeholders) -->
+            <section id="activity-3-section" class="activity-section">
+                <div class="activity-placeholder-view">
+                    <h2>Activity 3: Upcoming Challenge</h2>
+                    <p>Get ready for more coding challenges! Activity 3 is unlocked after completing Activity 2.</p>
+                </div>
+            </section>
+            <section id="activity-4-section" class="activity-section">
+                <div class="activity-placeholder-view">
+                    <h2>Activity 4: Upcoming Challenge</h2>
+                    <p>Explore algorithms and structures! Unlocked after completing Activity 3.</p>
+                </div>
+            </section>
+            <section id="activity-5-section" class="activity-section">
+                <div class="activity-placeholder-view">
+                    <h2>Activity 5: Graduation Quiz</h2>
+                    <p>Test your knowledge and celebrate! Unlocked after completing Activity 4.</p>
+                </div>
+            </section>
+            
+        </main>
+    </div>
+
+    <!-- Notification Toast Element -->
+    <div id="app-toast"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

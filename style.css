@@ -1,0 +1,739 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap');
+
+:root {
+    --purple-primary: #8B5CF6;
+    --purple-hover: #7C3AED;
+    --purple-light: #F5F3FF;
+    --green-success: #10B981;
+    --green-hover: #059669;
+    --green-mint: #E6FFFA;
+    --red-run: #EF4444;
+    --red-run-hover: #DC2626;
+    --lavender-card: #EDE9FE;
+    --border-purple: #E9D5FF;
+    
+    --text-primary: #1F2937;
+    --text-secondary: #4B5563;
+    --text-muted: #9CA3AF;
+    
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #FFFFFF;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- App Layout Structures --- */
+
+/* Purple Header Bar */
+.app-topbar {
+    height: 56px;
+    background-color: var(--purple-primary);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.15);
+    z-index: 100;
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.topbar-logo {
+    width: 24px;
+    height: 24px;
+    background-color: #FFFFFF;
+    border-radius: 6px;
+}
+
+.topbar-title {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+}
+
+.topbar-profile {
+    width: 32px;
+    height: 32px;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Master Layout Grid */
+.app-layout {
+    flex: 1;
+    display: flex;
+    height: calc(100vh - 56px);
+    overflow: hidden;
+}
+
+/* Lavender Left Sidebar */
+.app-sidebar {
+    width: 240px;
+    background-color: var(--purple-light);
+    border-right: 1px solid var(--border-purple);
+    padding: 24px 16px;
+    overflow-y: auto;
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Sidebar Item Cards */
+.sidebar-item {
+    background-color: #FFFFFF;
+    color: var(--purple-hover);
+    border: 1px solid var(--border-purple);
+    border-radius: 12px;
+    padding: 12px 18px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 4px rgba(139, 92, 246, 0.04);
+}
+
+.sidebar-item:hover {
+    transform: translateY(-1px);
+    border-color: var(--purple-primary);
+    box-shadow: 0 4px 8px rgba(139, 92, 246, 0.08);
+}
+
+.sidebar-item.active {
+    background-color: var(--purple-hover);
+    color: #FFFFFF;
+    border-color: var(--purple-hover);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
+}
+
+.sidebar-item .dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--purple-primary);
+    border-radius: 50%;
+    transition: background-color 0.25s;
+}
+
+.sidebar-item.active .dot {
+    background-color: #FFFFFF;
+}
+
+/* Empty Slots in Sidebar to match Figma mockup */
+.sidebar-placeholder {
+    height: 44px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 1px dashed var(--border-purple);
+    border-radius: 12px;
+    margin-bottom: 2px;
+}
+
+/* Main Workspace panel */
+.app-main {
+    flex: 1;
+    background-color: #FFFFFF;
+    padding: 32px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Activity Sections --- */
+
+.activity-section {
+    display: none;
+    height: 100%;
+    animation: fadeSlideIn 0.35s ease forwards;
+}
+
+.activity-section.active {
+    display: flex;
+    flex-direction: column;
+}
+
+@keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.workspace-title {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 24px;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.activity-body {
+    flex: 1;
+    display: flex;
+    gap: 24px;
+    align-items: stretch;
+    overflow: hidden;
+}
+
+/* --- Left Column: Instructions --- */
+.instructions-card {
+    flex: 0 0 240px;
+    background-color: var(--lavender-card);
+    border-radius: 20px;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    color: #4C1D95;
+    overflow-y: auto;
+    text-align: left;
+}
+
+.instructions-card h4 {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 18px;
+    color: #5B21B6;
+}
+
+.instructions-card p {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #5B21B6;
+    font-weight: 500;
+}
+
+.checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #6D28D9;
+}
+
+.checklist-item input[type="checkbox"] {
+    accent-color: var(--purple-primary);
+    width: 16px;
+    height: 16px;
+    cursor: default;
+}
+
+/* --- Right Column: Workspace --- */
+.workspace-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 100%;
+}
+
+/* Dashed border card container */
+.workspace-dashed-container {
+    flex: 1;
+    border: 3px dashed var(--border-purple);
+    border-radius: 24px;
+    background-color: #FFFFFF;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Canvas Mockup with Visual Elements */
+.canvas-preview-container {
+    background-color: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 16px;
+    padding: 20px;
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 1/1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.03);
+}
+
+.canvas-block {
+    border-radius: 8px;
+    height: 20px;
+    transition: transform 0.2s ease;
+}
+
+.canvas-block-red {
+    background-color: #FF0000;
+    width: 50%;
+}
+
+.canvas-block-orange {
+    background-color: #FFA500;
+    width: 75%;
+    height: 36px;
+}
+
+.canvas-block-blue {
+    background-color: #1E90FF;
+    width: 75%;
+    height: 42px;
+    align-self: flex-end;
+}
+
+/* --- K-12 Submission Flow Redesign Actions --- */
+.workspace-action-row {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+    padding-top: 4px;
+}
+
+.btn-k12-run {
+    background-color: var(--red-run);
+    color: #FFFFFF;
+    border-radius: 14px;
+    padding: 12px 28px;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(239, 68, 68, 0.2);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-k12-run:hover {
+    background-color: var(--red-run-hover);
+    transform: translateY(-1px);
+}
+
+.btn-k12-run:active {
+    transform: translateY(0);
+}
+
+.btn-k12-handin {
+    background-color: var(--green-success);
+    color: #FFFFFF;
+    border-radius: 14px;
+    padding: 14px 36px;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 16px; /* Prominent CTA size */
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 6px 14px rgba(16, 185, 129, 0.25);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-k12-handin:hover {
+    background-color: var(--green-hover);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.35);
+}
+
+.btn-k12-handin:active {
+    transform: translateY(-1px) scale(1);
+}
+
+/* Loading state spinner and message overlay */
+.loading-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    animation: fadeIn 0.2s ease forwards;
+}
+
+.loading-spinner {
+    width: 48px;
+    height: 48px;
+    border: 5px solid var(--purple-light);
+    border-top: 5px solid var(--purple-primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+.loading-text {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--purple-primary);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Success Celebration screen styling */
+.k12-celebration-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #FFFFFF;
+    height: 100%;
+    width: 100%;
+    padding: 8px 12px;
+    animation: scaleIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.92); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.k12-celebration-title {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 32px; /* Bigger heading */
+    color: var(--green-hover);
+    margin-bottom: 8px;
+}
+
+.k12-celebration-subtitle {
+    font-size: 15px; /* Bigger subtitle text */
+    color: var(--text-secondary);
+    max-width: 520px;
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+/* Side-by-side comparison cards */
+.k12-comparison-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    width: 100%;
+    max-width: 680px; /* Much wider cards container */
+    margin-bottom: 24px;
+    position: relative;
+}
+
+.k12-comparison-card {
+    background-color: var(--green-mint);
+    border: 1.5px solid #A7F3D0;
+    border-radius: 20px; /* Rounder corners */
+    padding: 20px;
+    text-align: left;
+    height: 190px; /* Taller card */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 6px 12px rgba(16, 185, 129, 0.06);
+}
+
+.k12-comparison-card-title {
+    font-family: var(--font-heading);
+    font-size: 13px; /* Slightly larger labels */
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #047857;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.k12-code-preview {
+    flex: 1;
+    background-color: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    border-radius: 12px;
+    padding: 12px;
+    font-family: monospace;
+    font-size: 12px; /* Much larger code text for K-12 kids readability! */
+    color: #065f46;
+    overflow-y: auto;
+    line-height: 1.5;
+}
+
+/* Mascot overlapping container styling */
+.peeking-mascot-container {
+    position: absolute;
+    bottom: -25px;
+    right: -30px;
+    z-index: 10;
+    pointer-events: none;
+    animation: mascotPeek 3s infinite ease-in-out;
+}
+
+.peeking-mascot-container img,
+.peeking-mascot-left img {
+    height: 190px; /* Much bigger peeking mascot to stand out! */
+    width: auto;
+    display: block;
+}
+
+@keyframes mascotPeek {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-4px) rotate(2deg); }
+}
+
+.btn-k12-next {
+    background-color: var(--green-success);
+    color: #FFFFFF;
+    border-radius: 16px;
+    padding: 16px 52px; /* Bigger button padding */
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 18px; /* Bigger font */
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.25);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-k12-next:hover {
+    background-color: var(--green-hover);
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);
+}
+
+/* --- Slide Navigation Flow Component (Activity 2) --- */
+
+.k12-slide-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 24px;
+}
+
+.k12-slide-card {
+    width: 100%;
+    max-width: 480px;
+    height: 180px;
+    background-color: #FFE4E6; /* Light pink background */
+    border-radius: 20px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #9F1239;
+    box-shadow: 0 4px 10px rgba(159, 18, 57, 0.05);
+    transition: all 0.3s ease;
+}
+
+.k12-slide-card h3 {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: #9F1239;
+}
+
+.k12-slide-card p {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #BE123C;
+    max-width: 380px;
+}
+
+/* Slide Navigation Control Row */
+.k12-slide-navigation-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 480px;
+    margin-top: 18px;
+    position: relative;
+}
+
+.k12-slide-indicator-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.k12-slide-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #E2E8F0;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.k12-slide-dot.active {
+    background-color: #0F172A;
+    transform: scale(1.3);
+}
+
+.k12-status-text {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--red-run); /* Alert red */
+    max-width: 220px;
+    text-align: left;
+}
+
+.k12-status-text.success {
+    color: var(--green-success);
+}
+
+.btn-k12-slide-next {
+    background-color: var(--green-success);
+    color: #FFFFFF;
+    border-radius: 12px;
+    padding: 10px 24px;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 13px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(16, 185, 129, 0.15);
+    transition: all 0.2s ease;
+}
+
+.btn-k12-slide-next:hover {
+    background-color: var(--green-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(16, 185, 129, 0.2);
+}
+
+/* Mascot on bottom left for Slide 5 */
+.peeking-mascot-left {
+    position: absolute;
+    bottom: -20px;
+    left: -25px;
+    z-index: 10;
+    pointer-events: none;
+    animation: mascotPeekLeft 3s infinite ease-in-out;
+}
+
+@keyframes mascotPeekLeft {
+    0%, 100% { transform: translateY(0) scaleX(-1); }
+    50% { transform: translateY(-4px) scaleX(-1) rotate(-2deg); }
+}
+
+/* --- Placeholder View (Activities 3, 4, 5) --- */
+.activity-placeholder-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    padding: 48px;
+    color: var(--text-secondary);
+    font-family: var(--font-heading);
+}
+
+.activity-placeholder-view h2 {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.activity-placeholder-view p {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-muted);
+    max-width: 320px;
+    line-height: 1.5;
+}
+
+/* Toast Notifications styling */
+#app-toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    padding: 14px 28px;
+    border-radius: 12px;
+    background-color: var(--purple-hover);
+    color: #FFFFFF;
+    font-size: 13.5px;
+    font-weight: 600;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    z-index: 1000;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translateY(100px);
+    opacity: 0;
+    pointer-events: none;
+    border-left: 5px solid #4C1D95;
+}
+
+#app-toast.active {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+    .app-layout {
+        flex-direction: column;
+    }
+    .app-sidebar {
+        width: 100%;
+        height: auto;
+        padding: 12px;
+    }
+    .sidebar-menu {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 6px;
+    }
+    .sidebar-item {
+        padding: 8px 14px;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+    .sidebar-placeholder {
+        display: none;
+    }
+    .activity-body {
+        flex-direction: column;
+    }
+    .instructions-card {
+        flex: auto;
+    }
+    .k12-comparison-layout {
+        grid-template-columns: 1fr;
+    }
+}
